@@ -1,0 +1,28 @@
+{
+  "name": "news-scraper",
+  "version": "1.0.0",
+  "description": "a web app that lets users view and leave comments on the latest news using Mongoose and Cheerio to scrape news from another site.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suha0331/news-scraper.git"
+  },
+  "author": "Suha Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suha0331/news-scraper/issues"
+  },
+  "homepage": "https://github.com/suha0331/news-scraper#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "heroku": "^0.2.0",
+    "mongoose": "^4.13.9",
+    "request": "^2.83.0"
+  }
+}

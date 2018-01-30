@@ -1,11 +1,13 @@
 // Dependencies
 var bodyParser = require("body-parser")
 var express = require("express");
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 var request = require("request");
 var cheerio = require("cheerio");
 
+var PORT = process.env.PORT || 3000;
 var app = express();
+
 
 // Body Parser
 app.use(bodyParser.urlencoded({
@@ -20,7 +22,16 @@ app.use(express.static("public"));
 // app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 // app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://localhost/news-scraper");
+app.use(express.static('public'));
+
+var databaseUri = 'mongodb://heroku_l9zkt5qb:5m9bc2kbon58lcrn709u7aa9gj@ds143132.mlab.com:43132/heroku_l9zkt5qb';
+
+if(process.env.MONGODB_URI) {
+	mongoose.connect(process.env.MONGODB_URI);
+} else {
+	mongoose.connect(databaseUri);
+}
+
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -33,11 +44,8 @@ db.once("open", function() {
     console.log("Mongoose connection successful.");
 });
 
-var routes = require('./controller/controller.js');
-app.use('/', routes);
 
-// Listen on port 3000
-var port = process.env.PORT || 3000;
-app.listen(port, function() {
-    console.log("App running on PORT " + port);
+// Start the server
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
 });
